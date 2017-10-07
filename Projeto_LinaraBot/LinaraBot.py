@@ -8,7 +8,7 @@ from os import path
 # Configuração para inciar o bot
 CURR_PATH = path.dirname(path.realpath(__file__))
 DUMP_FILE = path.join(CURR_PATH, "data.pkl")
-BOTAPI = '401234240:AAGwJPXWF4Iz-g0PQ_JImXQoVbd0Sk6lS8g'
+BOTAPI = ''
 
 bot = TelegramBot(BOTAPI)
 bot.update_bot_info().wait()
