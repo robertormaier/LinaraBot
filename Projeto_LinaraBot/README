@@ -1,0 +1,49 @@
+Anotações de exemplos encontrados na Net.
+
+http://blog.rodrigolira.net/2015/10/05/criando-um-bot-do-telegram-parte-2
+
+https://magic.import.io/error
+
+documentacao 
+http://pythonhosted.org/twx.botapi
+
+exemplos de mensagem recebida
+
+Message(message_id=74, 
+		sender=User(id=401234240, first_name=u'LinaraBot',
+					last_name=None, username=u'LinaraBot'), 
+		date=1507172671, 
+		edit_date=None, 
+		chat=Chat(id=465545895, 
+				  type=u'private', 
+				  title=None, 
+				  username=None, 
+				  first_name=u'Roberto', 
+				  last_name=u'Maier'), 
+		forward_from=None, 
+		forward_from_chat=None, 
+		forward_date=None, 
+		reply_to_message=None, 
+		text=u'Oi, eu sou um bot, meu nome \xe9 Linara, e o seu? Em breve terei mais funcionalidades!',
+		entities=None, 
+		audio=None, 
+		document=None,
+		photo=None, 
+		sticker=None, 
+		video=None, 
+		voice=None, 
+		caption=None, 
+		contact=None, 
+		location=None, 
+		venue=None, 
+		new_chat_member=None, 
+		left_chat_member=None, 
+		new_chat_title=None, 
+		new_chat_photo=None, 
+		delete_chat_photo=None, 
+		group_chat_created=None, 
+		supergroup_chat_created=None, 
+		channel_chat_created=None, 
+		migrate_to_chat_id=None, 
+		migrate_from_chat_id=None, 
+		pinned_message=None)
