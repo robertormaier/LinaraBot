@@ -3,17 +3,23 @@
 from twx.botapi import TelegramBot
 from time import sleep
 import pickle
+import mysql
 from os import path
 
 # Configuração para inciar o bot
 CURR_PATH = path.dirname(path.realpath(__file__))
-DUMP_FILE = path.join(CURR_PATH, "data.pkl")
-BOTAPI = ''
+DUMP_FILE = path.join(CURR_PATH,"data.pkl")
 
+cnx = mysql.connector.connect(user='scott', password='tiger',
+                              host='127.0.0.1',
+                              database='employees')
+cnx.close()
+
+BOTAPI = ''
 bot = TelegramBot(BOTAPI)
 bot.update_bot_info().wait()
 
-print{bot.username}
+print  (bot.username)
 
 if path.exists(DUMP_FILE):  # Se existe, carregar a lista de mensagens respondidas
     pkl_file = open(DUMP_FILE)
@@ -40,7 +46,6 @@ while (True):
 
             if (result):
                 answered_messages.append(update_id)
-
     output = open(DUMP_FILE, 'wb')
     pickle.dump(answered_messages, output)  # persiste a lista de mensagens respondidas
     sleep(10)
