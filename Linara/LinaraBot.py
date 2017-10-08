@@ -10,6 +10,8 @@ from os import path
 CURR_PATH = path.dirname(path.realpath(__file__))
 DUMP_FILE = path.join(CURR_PATH,"data.pkl")
 
+
+print ('Start connection of benck  of data ')
 cnx = mysql.connector.connect(user='scott', password='tiger',
                               host='127.0.0.1',
                               database='employees')
