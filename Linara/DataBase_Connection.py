@@ -1,1 +1,4 @@
-_bot_message = {'Oi, eu sou um bot, meu nome é Linara, e o seu? Em breve terei mais funcionalidades!'}
+import MySQLdb # para o MySQL
+
+con = MySQLdb.connect('127.0.0.1', 'root', '')
+con.select_db('linarabot')

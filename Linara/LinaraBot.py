@@ -3,7 +3,6 @@
 from twx.botapi import TelegramBot
 from time import sleep
 import pickle
-import mysql
 from os import path
 
 # Configuração para inciar o bot
