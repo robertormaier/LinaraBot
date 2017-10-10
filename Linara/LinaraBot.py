@@ -12,8 +12,6 @@ import pymysql.cursors                                                          
 CURR_PATH = path.dirname(path.realpath(__file__))
 DUMP_FILE = path.join(CURR_PATH, "data.pkl")
 
-
-# Connect to the database
 connection = pymysql.connect(host='127.0.0.1',
                              user='root',
                              password='',
