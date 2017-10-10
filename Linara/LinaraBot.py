@@ -10,7 +10,12 @@ from os import path
 CURR_PATH = path.dirname(path.realpath(__file__))
 DUMP_FILE = path.join(CURR_PATH, "data.pkl")
 
-BOTAPI='401234240:AAGwJPXWF4Iz-g0PQ_JImXQoVbd0Sk6lS8g'
+conn = PyMySQL.connect(host='127.0.0.1', port=3306, user='root', passwd='', db='linarabot')
+cursor = conn.cursor()
+
+# Executa a consulta na tabela selecionada
+BOTAPI = cursor.execute("SELECT * FROM config;")
+
 bot = TelegramBot(BOTAPI)
 bot.update_bot_info().wait()
 
