@@ -1,22 +1,36 @@
 # -*- coding: utf-8 -*-
 
-from twx.botapi import TelegramBot
-from time import sleep
-import pickle
-from os import path
-
+######################################### BIBLIOTECAS ###########################################
+from twx.botapi import TelegramBot                                                              #
+from time import sleep                                                                          #
+import pickle                                                                                   #
+from os import path                                                                             #
+import pymysql.cursors                                                                          #
+#################################################################################################
 
 # Configuração para inciar o bot
 CURR_PATH = path.dirname(path.realpath(__file__))
 DUMP_FILE = path.join(CURR_PATH, "data.pkl")
 
-conn = PyMySQL.connect(host='127.0.0.1', port=3306, user='root', passwd='', db='linarabot')
-cursor = conn.cursor()
 
-# Executa a consulta na tabela selecionada
-BOTAPI = cursor.execute("SELECT * FROM config;")
+# Connect to the database
+connection = pymysql.connect(host='127.0.0.1',
+                             user='root',
+                             password='',
+                             db='linarabot',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 
-bot = TelegramBot(BOTAPI)
+try:
+    with connection.cursor() as cursor:
+        # Executa a consulta na tabela selecionada
+        cursor.execute("SELECT CHAVE FROM config;")
+        result = cursor.fetchone()
+        print(result)
+finally:
+    connection.close()
+
+bot = TelegramBot(result)
 bot.update_bot_info().wait()
 
 print(bot.username)
