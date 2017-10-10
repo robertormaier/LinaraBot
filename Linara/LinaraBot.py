@@ -5,6 +5,7 @@ from time import sleep
 import pickle
 from os import path
 
+
 # Configuração para inciar o bot
 CURR_PATH = path.dirname(path.realpath(__file__))
 DUMP_FILE = path.join(CURR_PATH, "data.pkl")
@@ -16,7 +17,7 @@ bot.update_bot_info().wait()
 print(bot.username)
 
 if path.exists(DUMP_FILE):  # Se existe, carregar a lista de mensagens respondidas
-    pkl_file = open(DUMP_FILE,'r')
+    pkl_file = open(DUMP_FILE,'rb')
     answered_messages = pickle.load(pkl_file)
 else:
     answered_messages = []
