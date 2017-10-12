@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 
-######################################### BIBLIOTECAS ###########################################
 from twx.botapi import TelegramBot
 from time import sleep
 import pickle
 from os import path
 import os
 from aiml import *
-#################################################################################################
 
 # Configuração para inciar o bot
 CURR_PATH = path.dirname(path.realpath(__file__))
