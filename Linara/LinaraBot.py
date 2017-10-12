@@ -19,7 +19,7 @@ bot.update_bot_info().wait()
 print(bot.username)
 
 if path.exists(DUMP_FILE):  # Se existe, carregar a lista de mensagens respondidas
-    pkl_file = open(DUMP_FILE,'rb')
+    pkl_file = open(DUMP_FILE, 'rb')
     answered_messages = pickle.load(pkl_file)
 else:
     answered_messages = []
