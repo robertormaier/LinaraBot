@@ -6,7 +6,8 @@ import pickle
 from os import path
 import os
 import aiml
-from aiml import *
+
+###############################################################################################################3
 
 # Configuração para inciar o bot
 CURR_PATH = path.dirname(path.realpath(__file__))
