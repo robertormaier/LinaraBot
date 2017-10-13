@@ -22,35 +22,13 @@ ai = aiml.Kernel()# inicialização
 ai.learn('startup.xml')  # lê o arquivo principal da AIML e faz referências aos outros
 ai.respond('load aiml b')  # faz com que os outros arquivos da AIML sejam carregados
 
+print("Getting updates".center(50, '-'))
+
 while (1 == 1):
-    frase = input('Fale algo ao bot em english:')
-    print ("Resposta do bot: %s" % ai.respond(frase))
-
-if path.exists(DUMP_FILE):  # Se existe, carregar a lista de mensagens respondidas
-    pkl_file = open(DUMP_FILE, 'rb')
-    answered_messages = pickle.load(pkl_file)
-else:
-    answered_messages = []
-
-_bot_message = {'Oi, eu sou um bot, meu nome é Linara, e o seu? Em breve terei mais funcionalidades!'}
-
-while (True):
-    print("Getting updates".center(50, '-'))
-
     updates = bot.get_updates().wait()
-    for pos, update in enumerate(updates):
+    #update = input('Fale algo ao bot em english:')
+    resposta_bot = ("Resposta do bot: %s" % ai.respond(updates))
+    print('Resposta recebida',updates)
+    print(resposta_bot)
 
-        print(str(pos) + " " + str(update) + "n")
-
-        update_id = update.update_id
-        if (update_id not in answered_messages):  # Se a mensagem não foi respondida, responda o usuário
-            sender_id = update.message.sender.id
-            result = bot.send_message(sender_id, _bot_message).wait()
-
-            print(result)
-
-            if (result):
-                answered_messages.append(update_id)
-    output = open(DUMP_FILE, 'wb')
-    pickle.dump(answered_messages, output)  # persiste a lista de mensagens respondidas
-    sleep(10)
+    sleep(2)
