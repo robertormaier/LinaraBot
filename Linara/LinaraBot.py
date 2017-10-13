@@ -18,15 +18,14 @@ bot = TelegramBot(token)
 bot.update_bot_info().wait()
 print(bot.username)
 
-os.chdir('C:/Users/Roberto Maier/PycharmProjects/LinaraBot/LinaraBot_AIML/aiml')  # diretório que contém os arquivos da AIML standard
+os.chdir('C:/Users/Roberto Maier/PycharmProjects/LinaraBot/LinaraBot_AIML/botdata/standard')  # diretório que contém os arquivos da AIML standard
 ai = aiml.Kernel()# inicialização
-ai.learn('std-startup.xml')  # lê o arquivo principal da AIML e faz referências aos outros
+ai.learn('startup.xml')  # lê o arquivo principal da AIML e faz referências aos outros
 ai.respond('load aiml b')  # faz com que os outros arquivos da AIML sejam carregados
 
 while (1 == 1):
     frase = input('Fale algo ao bot em english:')
     print ("Resposta do bot: %s" % ai.respond(frase))
-
 
 if path.exists(DUMP_FILE):  # Se existe, carregar a lista de mensagens respondidas
     pkl_file = open(DUMP_FILE, 'rb')
