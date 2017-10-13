@@ -5,6 +5,7 @@ from time import sleep
 import pickle
 from os import path
 import os
+import aiml
 from aiml import *
 
 # Configuração para inciar o bot
@@ -12,11 +13,19 @@ CURR_PATH = path.dirname(path.realpath(__file__))
 DUMP_FILE = path.join(CURR_PATH, "data.pkl")
 
 token = '401234240:AAGwJPXWF4Iz-g0PQ_JImXQoVbd0Sk6lS8g'
-
 bot = TelegramBot(token)
 bot.update_bot_info().wait()
-
 print(bot.username)
+
+os.chdir('C:/Users/Roberto Maier/PycharmProjects/LinaraBot/LinaraBot_AIML/aiml')  # diretório que contém os arquivos da AIML standard
+ai = aiml.Kernel()# inicialização
+ai.learn('std-startup.xml')  # lê o arquivo principal da AIML e faz referências aos outros
+ai.respond('load aiml b')  # faz com que os outros arquivos da AIML sejam carregados
+
+while (1 == 1):
+    frase = input('Fale algo ao bot em english:')
+    print ("Resposta do bot: %s" % ai.respond(frase))
+
 
 if path.exists(DUMP_FILE):  # Se existe, carregar a lista de mensagens respondidas
     pkl_file = open(DUMP_FILE, 'rb')
