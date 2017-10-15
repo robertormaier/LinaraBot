@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 from twx.botapi import *
-from time import sleep
-import pickle
-from os import path
 import os
 import aiml
 import traceback
