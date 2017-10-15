@@ -10,12 +10,14 @@ bot.update_bot_info().wait()
 print(bot.username)
 last_update_id = 0
 
-os.chdir('C:/Users/Roberto Maier/PycharmProjects/LinaraBot/LinaraBot_AIML/botdata/standard') # diretório que contém os arquivos da AIML standard
-ai = aiml.Kernel()# inicialização
+os.chdir(
+    'C:/Users/Roberto Maier/PycharmProjects/LinaraBot/LinaraBot_AIML/botdata/standard')  # diretório que contém os arquivos da AIML standard
+ai = aiml.Kernel()  # inicialização
 ai.learn('startup.xml')  # lê o arquivo principal da AIML e faz referências aos outros
 ai.respond('load aiml b')  # faz com que os outros arquivos da AIML sejam carregados
 
 print("Getting updates".center(50, '-'))
+
 
 def process_message(bot, u):  # This is what we'll do when we get a message
 
@@ -24,16 +26,17 @@ def process_message(bot, u):  # This is what we'll do when we get a message
         user = u.message.sender.username
         message = u.message.text
         updates = message
-        resposta_bot =(ai.respond(updates))
+        resposta_bot = (ai.respond(updates))
         bot.send_message(chat_id, resposta_bot)
 
-while True: #a loop to wait for messages
-    updates = bot.get_updates(offset = last_update_id).wait() #we wait for a message
+
+while True:  # a loop to wait for messages
+    updates = bot.get_updates(offset=last_update_id).wait()  # we wait for a message
     try:
-        for update in updates: #get the messages
-            if int(update.update_id) > int(last_update_id): #if it is a new message then get it
+        for update in updates:  # get the messages
+            if int(update.update_id) > int(last_update_id):  # if it is a new message then get it
                 last_update_id = update.update_id
-                process_message(bot, update) #send it to the function
+                process_message(bot, update)  # send it to the function
                 continue
         continue
     except Exception:
