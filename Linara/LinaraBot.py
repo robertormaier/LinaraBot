@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from twx.botapi import *
 import os
 import aiml
@@ -27,16 +28,14 @@ def process_message(bot, u):  # This is what we'll do when we get a message
         chat_id = u.message.chat.id
         user = u.message.sender.username
         message = u.message.text
-        updates = message
-        resposta_bot = (ai.respond(updates))
+        recebida = message
+        resposta_bot = (ai.respond(recebida))
         bot.send_message(chat_id, resposta_bot)
-
-        if message == 'tempo':  # if the user is asking for the weather then we ask the location
+        if message == 'clima':  # if the user is asking for the weather then we ask the location
             bot.send_message(chat_id, 'please send me your location')
-        else: print ('usuário não solicitou o tempo')
 
-    elif u.message.location:  # if the message contains a location then get the weather on that latitude/longitude
-        print (u.message.location)
+    if u.message.location:  # if the message contains a location then get the weather on that latitude/longitude
+        print(u.message.location)
         chat_id = u.message.chat.id
         owm = OWM(OWMKEY)  # initialize the Weather API
         obs = owm.weather_at_coords(u.message.location.latitude,
@@ -53,16 +52,15 @@ def process_message(bot, u):  # This is what we'll do when we get a message
 
 
 while True:  # a loop to wait for messages
-
     updates = bot.get_updates(offset=last_update_id).wait()  # we wait for a message
     try:
         for update in updates:  # get the messages
             if int(update.update_id) > int(last_update_id):  # if it is a new message then get it
                 last_update_id = update.update_id
-            process_message(bot, update)  # send it to the function
-            continue
+                process_message(bot, update)  # send it to the function
+                continue
         continue
     except Exception:
         ex = None
-    print(traceback.format_exc())
-    continue
+        print(traceback.format_exc())
+        continue
