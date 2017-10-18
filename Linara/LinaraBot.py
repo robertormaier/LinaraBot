@@ -31,24 +31,24 @@ def process_message(bot, u):  # This is what we'll do when we get a message
         recebida = message
         if message == 'clima':  # if the user is asking for the weather then we ask the location
             bot.send_message(chat_id, 'please send me your location')
-        if u.message.location:  # if the message contains a location then get the weather on that latitude/longitude
-            print(u.message.location)
-            chat_id = u.message.chat.id
-            owm = OWM(OWMKEY)  # initialize the Weather API
-            obs = owm.weather_at_coords(u.message.location.latitude,
-                                        u.message.location.longitude)  # Create a weather observation
-            w = obs.get_weather()  # create the object Weather as w
-            print(w)  # <Weather - reference time=2013-12-18 09:20, status=Clouds>
-            l = obs.get_location()  # create a location related to our already created weather object And send the parameters
-            status = str(w.get_detailed_status())
-            placename = str(l.get_name())
-            wtime = str(w.get_reference_time(timeformat='iso'))
-            temperature = str(w.get_temperature('celsius').get('temp'))
-            bot.send_message(chat_id,
-                             'Weather Status: ' + status + ' Cidade: ' + placename + ' ' + wtime + ' Temperatura: ' + temperature + 'C')  # send the anwser
-        else:
-            resposta_bot = (ai.respond(recebida))
-            bot.send_message(chat_id, resposta_bot)
+    if  u.message.location:  # if the message contains a location then get the weather on that latitude/longitude
+        print(u.message.location)
+        chat_id = u.message.chat.id
+        owm = OWM(OWMKEY)  # initialize the Weather API
+        obs = owm.weather_at_coords(u.message.location.latitude,
+                                   u.message.location.longitude)  # Create a weather observation
+        w = obs.get_weather()  # create the object Weather as w
+        print(w)  # <Weather - reference time=2013-12-18 09:20, status=Clouds>
+        l = obs.get_location()  # create a location related to our already created weather object And send the parameters
+        status = str(w.get_detailed_status())
+        placename = str(l.get_name())
+        wtime = str(w.get_reference_time(timeformat='iso'))
+        temperature = str(w.get_temperature('celsius').get('temp'))
+        bot.send_message(chat_id,
+                         'Weather Status: ' + status + ' Cidade: ' + placename + ' ' + wtime + ' Temperatura: ' + temperature + 'C')  # send the anwser
+    if message != 'clima' or u.message.location:
+        resposta_bot = (ai.respond(recebida))
+        bot.send_message(chat_id, resposta_bot)
 
 
 while True:  # a loop to wait for messages
