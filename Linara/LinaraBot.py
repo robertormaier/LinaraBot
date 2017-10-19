@@ -31,7 +31,7 @@ def process_message(bot, u):  # This is what we'll do when we get a message
         recebida = message
         if message == 'clima':  # if the user is asking for the weather then we ask the location
             bot.send_message(chat_id, 'please send me your location')
-    if  u.message.location:  # if the message contains a location then get the weather on that latitude/longitude
+    if u.message.location:  # if the message contains a location then get the weather on that latitude/longitude
         print(u.message.location)
         chat_id = u.message.chat.id
         owm = OWM(OWMKEY)  # initialize the Weather API
@@ -49,6 +49,8 @@ def process_message(bot, u):  # This is what we'll do when we get a message
     if message != 'clima' or u.message.location:
         resposta_bot = (ai.respond(recebida))
         bot.send_message(chat_id, resposta_bot)
+
+
 
 
 while True:  # a loop to wait for messages
