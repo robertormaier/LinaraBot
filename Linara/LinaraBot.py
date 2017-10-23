@@ -36,7 +36,7 @@ def process_message(bot, u):  # This is what we'll do when we get a message
         chat_id = u.message.chat.id
         owm = OWM(OWMKEY)  # initialize the Weather API
         obs = owm.weather_at_coords(u.message.location.latitude,
-                                   u.message.location.longitude)  # Create a weather observation
+                                    u.message.location.longitude)  # Create a weather observation
         w = obs.get_weather()  # create the object Weather as w
         print(w)  # <Weather - reference time=2013-12-18 09:20, status=Clouds>
         l = obs.get_location()  # create a location related to our already created weather object And send the parameters
@@ -49,8 +49,6 @@ def process_message(bot, u):  # This is what we'll do when we get a message
     if message != 'clima' or u.message.location:
         resposta_bot = (ai.respond(recebida))
         bot.send_message(chat_id, resposta_bot)
-
-
 
 
 while True:  # a loop to wait for messages
